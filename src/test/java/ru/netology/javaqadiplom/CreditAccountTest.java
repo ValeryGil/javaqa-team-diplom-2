@@ -18,7 +18,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(3_000, account.getBalance());
     }
 
-    @Test // Пополнение счета при нулевом балансе.
+    @Test // Пополнение счета при положительном балансе.
     public void shouldAddToPositiveBalance() {
         CreditAccount account = new CreditAccount(
                 100,
@@ -70,7 +70,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(1_000, account.getBalance());
     }
 
-    @Test // Оплата покупки когда сумма баланса выше, чем сумма покупки.
+    @Test // Оплата покупки когда сумма баланса больше, чем сумма покупки.
     public void shouldPayWhenBalanceMoreThanAmount() {
         CreditAccount account = new CreditAccount(
                 1_000,
@@ -83,7 +83,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(300, account.getBalance());
     }
 
-    @Test // Оплата покупки когда сумма покупки выше, чем сумма баланса.
+    @Test // Оплата покупки когда сумма покупки больше, чем сумма баланса.
     public void shouldPayWhenAmountMoreThanBalance() {
         CreditAccount account = new CreditAccount(
                 1_000,
@@ -109,7 +109,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(0, account.getBalance());
     }
 
-    @Test // Оплата покупки когда суммы покупки и баланса равны.
+    @Test // Оплата покупки когда суммы покупки отрицательная.
     public void shouldPayNegativeAmount() {
         CreditAccount account = new CreditAccount(
                 1_000,
