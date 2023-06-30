@@ -34,14 +34,14 @@ public class CreditAccountTest {
     @Test // Пополнение счета при отрицательном балансе.
     public void shouldAddToNegativeBalance() {
         CreditAccount account = new CreditAccount(
-                -100,
+                0,
                 5_000,
                 15
         );
 
-        account.add(3_000);
+        account.add(-3_000);
 
-        Assertions.assertEquals(2_900, account.getBalance());
+        Assertions.assertEquals(0, account.getBalance());
     }
 
     @Test // Пополнение счета на нулевую величину.
@@ -160,12 +160,14 @@ public class CreditAccountTest {
     @Test // Расчет процентов при отрицательном балансе.
     public void shouldCalculationYearChangeWhenNegativeBalance() {
         CreditAccount account = new CreditAccount(
-                -1_000,
+                1_000,
                 3_000,
                 15
         );
 
-        Assertions.assertEquals(-150, account.yearChange());
+        account.pay(3_000);
+
+        Assertions.assertEquals(-300, account.yearChange());
     }
 
     @Test // Проверка выдачи исключения при отрицательной ставке кредита.
