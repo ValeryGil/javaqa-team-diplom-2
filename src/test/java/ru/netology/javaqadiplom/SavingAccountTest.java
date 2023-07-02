@@ -98,6 +98,18 @@ public class SavingAccountTest {
         });
     }
 
+    // 2.5_Должно выкидываться исключение в случае, если начальный баланс отрицательный:
+    @Test
+    public void shouldAnExceptionMustBeThrownWhenInitialNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    -10_000,
+                    30_000,
+                    70_000,
+                    3);
+        });
+    }
+
     // 3_Метод оплаты.
 
     // 3.1_При покупке на 0 рублей должна возвращаться "ложь":
