@@ -90,11 +90,11 @@ public class BankTest {
         bank.transfer(creditAccount, savingAccount, 4_000);
 
         Assertions.assertEquals(3_000, creditAccount.getCreditLimit());
-        Assertions.assertEquals(2_000, savingAccount.getBalance());
+        Assertions.assertEquals(6_000, savingAccount.getBalance());
     }
 
-    @Test // Перевод суммы равной величине максимального кредитного лимита с кредитного счета на сберегательный.
-    public void shouldAddToAmountForTransferSameMaxCreditBalance() {
+    @Test // Перевод суммы равной величине кредитного лимита с кредитного счета на сберегательный.
+    public void shouldTransferAmountCreditLimitFromCreditAccountToSavingAccount() {
 
         CreditAccount creditAccount = new CreditAccount(
                 2_000,
@@ -134,7 +134,7 @@ public class BankTest {
         Bank bank = new Bank();
         bank.transfer(creditAccount, savingAccount, 8_000);
 
-        Assertions.assertEquals(8_000, creditAccount.getCreditLimit());
+        Assertions.assertEquals(10_000, creditAccount.getCreditLimit());
         Assertions.assertEquals(2_000, savingAccount.getBalance());
     }
 
@@ -252,8 +252,8 @@ public class BankTest {
     public void shouldTransferAmountMaxBalanceFromSavingAccountToCreditAccount() {
 
         SavingAccount savingAccount = new SavingAccount(
-                5_000,
-                1_000,
+                7_000,
+                0,
                 7_000,
                 15
         );
@@ -266,7 +266,7 @@ public class BankTest {
         Bank bank = new Bank();
         bank.transfer(savingAccount, creditAccount, 7_000);
 
-        Assertions.assertEquals(7_000, savingAccount.getBalance());
+        Assertions.assertEquals(0, savingAccount.getBalance());
         Assertions.assertEquals(11_000, creditAccount.getBalance());
     }
 
