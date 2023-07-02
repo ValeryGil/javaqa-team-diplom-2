@@ -98,13 +98,13 @@ public class SavingAccountTest {
         });
     }
 
-    // 2.5_Должно выкидываться исключение в случае, если начальный баланс отрицательный:
+    // 2.5_Должно выкидываться исключение в случае, если минимальный баланс отрицательный:
     @Test
-    public void shouldAnExceptionMustBeThrownWhenInitialNegative() {
+    public void shouldAnExceptionMustBeThrownWhenMinNegative() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
-                    -10_000,
-                    30_000,
+                    10_000,
+                    -30_000,
                     70_000,
                     3);
         });
